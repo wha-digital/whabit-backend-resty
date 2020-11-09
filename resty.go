@@ -90,7 +90,7 @@ func (c *Client) GetDebug() bool {
 }
 
 func (c *Client) SetTimeout(second int) {
-	newRc := c.restyClient.SetTimeout(30 * time.Second)
+	newRc := c.restyClient.SetTimeout(time.Duration(second * int(time.Second)))
 	c.restyClient = newRc
 }
 
