@@ -157,3 +157,8 @@ func (c *Client) PostWithRawData(url string, header map[string]string, data inte
 	}
 	return execute(resty.MethodPost, url, req)
 }
+
+func (c *Client) Delete(url string, header map[string]string) (*resty.Response, error) {
+	req := c.initRequest(header)
+	return execute(resty.MethodDelete, url, req)
+}
