@@ -162,3 +162,11 @@ func (c *Client) Delete(url string, header map[string]string) (*resty.Response, 
 	req := c.initRequest(header)
 	return execute(resty.MethodDelete, url, req)
 }
+
+func (c *Client) DeleteWithRawData(url string, header map[string]string, data interface{}) (*resty.Response, error) {
+	req := c.initRequest(header)
+	if data != nil {
+		req.SetBody(data)
+	}
+	return execute(resty.MethodDelete, url, req)
+}
