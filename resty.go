@@ -170,3 +170,15 @@ func (c *Client) DeleteWithRawData(url string, header map[string]string, data in
 	}
 	return execute(resty.MethodDelete, url, req)
 }
+
+func (c *Client) Put(url string, header map[string]string, data map[string]string) (*resty.Response, error) {
+	req := c.initRequest(header)
+	if data != nil {
+		req.SetFormData(cast.ToStringMapString(data))
+	}
+	resp, err := execute(resty.MethodPut, url, req)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
