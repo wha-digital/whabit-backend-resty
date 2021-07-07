@@ -182,3 +182,36 @@ func (c *Client) Put(url string, header map[string]string, data map[string]strin
 	}
 	return resp, nil
 }
+
+func (c *Client) PatchWithRawData(url string, header map[string]string, data interface{}) (*resty.Response, error) {
+	req := c.initRequest(header)
+	if data != nil {
+		req.SetBody(data)
+	}
+	return execute(resty.MethodPost, url, req)
+}
+
+func (c *Client) Head(url string, header map[string]string) (*resty.Response, error) {
+	req := c.initRequest(header)
+	return execute(resty.MethodHead, url, req)
+}
+
+// func (c *Client) PatchBinaryFile(url string, header map[string]string, data *bytes.Buffer) (*http.Response, error) {
+// 	req, err := http.NewRequest("PATCH", url, data)
+// 	for key, value := range header {
+// 		req.Header.Set(key, value)
+// 	}
+
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	client := &http.Client{}
+// 	resp, err := client.Do(req)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	defer resp.Body.Close()
+
+// 	return resp, nil
+// }
