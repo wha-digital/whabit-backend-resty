@@ -188,7 +188,7 @@ func (c *Client) PatchWithRawData(url string, header map[string]string, data int
 	if data != nil {
 		req.SetBody(data)
 	}
-	return execute(resty.MethodPost, url, req)
+	return execute(resty.MethodPatch, url, req)
 }
 
 func (c *Client) Head(url string, header map[string]string) (*resty.Response, error) {
