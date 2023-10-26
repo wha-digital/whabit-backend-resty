@@ -1,4 +1,4 @@
-module git.innovasive.co.th/backend/resty
+module gitlab.whabitofficial.com/backend/resty
 
 go 1.14
 
